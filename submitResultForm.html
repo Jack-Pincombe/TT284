@@ -18,16 +18,16 @@ Note: all fields marked '*' are mandatory.
       method="post" name="submitrunnertime">
 <table>
 <tr><td>Runner ID*</td>
-<td><input type="text" name="RunnerID" size="4" maxlength="4"/></td>
+<td><input type="text" id = 'RunnerID' name="RunnerID" size="4" maxlength="4"/></td>
 </tr>
 <tr><td>Event ID*</td>
-<td><input type="text" name="EventID" size="4" maxlength="4"/></td>
+<td><input type="text" id="EventID" name="EventID" size="4" maxlength="4"/></td>
 </tr>
 <tr><td>Date (YYYY-MM-DD)*</td>
-<td><input type="text" name="Date" size="10" maxlength="10"/></td>
+<td><input type="text" id="Date" name="Date" size="10" maxlength="10"/></td>
 </tr>
 <tr><td>Finish time (HH:MM:SS)*</td>
-<td><input type="text" name="FinishTime" size="8" maxlength="8"/></td>
+<td><input type="text" id="Finish" name="FinishTime" size="8" maxlength="8"/></td>
 </tr>
 <tr><td>Position</td>
 <td><input type="text" name="Position" size="5" maxlength="5"/></td>
@@ -42,7 +42,7 @@ Note: all fields marked '*' are mandatory.
 <td><input type="text" id="PB" name="PB" size="1" maxlength="2"/></td>
 </tr>
 </table>
-<input type="submit" name="submitrunnertime" value="submit"/>
+<input  type="submit" name="submitrunnertime" value="submit" onclick="return validate();"/>
 <hr/>
 </form>
 
@@ -54,22 +54,51 @@ Note: all fields marked '*' are mandatory.
 function isNotEmptyValue(value,name)
 {
 
+   var id = document.getElementById(value).value;
 
-  if (value == null || value == "")
+  if (id == null || id == "")
   {
-    alert("ERROR " + name + " must be given");
+    return "ERROR " + name + " must be given\n";
+
+    return false;
+
+  }
+  else return true;
+
+}
+
+function lengthCheck(value, min, max)
+{
+  if (value.length < min || value.length > max )
+  {
+    return "Error please ensure you are are between " + min +' and ' + max+'\n';
+    console.log("length validate works");
     return false;
   }
   else return true;
 }
-var value = document.getElementById('PB').value;
-isNotEmptyValue(value, "Personal Best");
+
+isNotEmptyValue('RunnerID','RunnerID');
 
 // main function to run on sumbit
-function validate(){
+function validate()
+{
+
+  var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
+              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish')
+              lengthCheck("RunnerID",1, 4) + lengthCheck("EventId", 1,4) +lengthCheck("Date",1,10)
+              + lengthCheck("Finish",1,8);
+
+  if(result != null || result != "")
+  {
+    alert(result);
+  }
+  else return true;
 
 
 }
+
+
 
 
 </script>
