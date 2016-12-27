@@ -85,15 +85,15 @@ function validate()
 {
 
   var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
-              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish')
-              lengthCheck("RunnerID",1, 4) + lengthCheck("EventId", 1,4) +lengthCheck("Date",1,10)
+              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') +
+              lengthCheck("RunnerID",1, 4) + lengthCheck("EventId", 1,4) + lengthCheck("Date",1,10)
               + lengthCheck("Finish",1,8);
 
   if(result != null || result != "")
   {
     alert(result);
   }
-  else return true;
+  
 
 
 }
