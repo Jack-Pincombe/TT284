@@ -7,6 +7,7 @@
      <meta name="description" content="DESCRIPTION">
     <link rel="stylesheet" href="PATH">
 
+
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
      <!--[if lt IE 9]>
        <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -19,22 +20,32 @@
 
    <h3>Note: all fields marked '*' are mandatory</h3>
 
+
+
    <form>
      Runner ID*:
-     <input type="text" name="Runner-ID" />
+     <input type="int" name="Runner-ID" />
+     <br />
      Event ID*
+     <input type="int" name="Event-ID" />
      <br />
      Date (YYYY-MM-DD)*
+     <input type="date" name="date" />
      <br  />
      Finish time (HH:MM:SS)*
+     <input type="time" name="finish time" />
      <br />
      Position
+     <input type="int" name="Position" />
      <br />
      Category ID
+     <input type="text" name="Category ID" />
      <br />
      Age grade
+     <input type="int" name="Age Grade" />
      <br />
      Personal best
+     <input type="time" name="Personal best" />
      <br />
      <input type="submit" value="Submit" />
 
