@@ -51,9 +51,9 @@ Note: all fields marked '*' are mandatory.
 
 
 
-function isNotEmptyValue(name)
+function isNotEmptyValue(value,name)
 {
-  var value = document.getElementById('PB').value;
+
 
   if (value == null || value == "")
   {
@@ -62,8 +62,15 @@ function isNotEmptyValue(name)
   }
   else return true;
 }
+var value = document.getElementById('PB').value;
+isNotEmptyValue(value, "Personal Best");
 
-isNotEmptyValue("Personal Best");
+// main function to run on sumbit
+function validate(){
+
+
+}
+
 
 </script>
 
