@@ -49,11 +49,6 @@ Note: all fields marked '*' are mandatory.
 <script type="text/javascript">
 
 
-function typeInt(value)
-{
-
-}
-
 function isNotEmptyValue(value,name)
 {
 
@@ -62,47 +57,42 @@ function isNotEmptyValue(value,name)
   if (id == null || id == "")
   {
     return "ERROR " + name + " must be given\n";
+    console.log(id);
 
-    return false;
 
   }
-  else return true;
-
+  return "";
 }
-lengthCheck('RunnerID',1,4);
+
+
 function lengthCheck(value, min, max)
 {
 
-  var x = document.getElementById(value).value;
+  var x = document.getElementById('RunnerID').value;
 
   console.log("Length check test");
-  if (x.Length < min || x.Length > max)
+  if (parseInt(x) < min || parseInt(x) > max)
   {
-    return "Please ensure that your input is between " + min +" and "
-    + max + '\n';
-    return false;
+    return "Please ensure that the number you input is between 1 and 9999 \n";
 
+    console.log(x);
   }
-    else return true;
+  return "";
 }
-
-
-
 
 // main function to run on sumbit
 function validate()
 {
 
-  var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID',' EventID')
-              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') + lengthCheck('RunnerID',1,4);
+  var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
+              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') +
+              lengthCheck('RunnerID',1,9999) + lengthCheck('EventID',1,9999);
 
-  if(result != null || result != "")
+  if(result != "")
   {
     alert(result);
+    return false;
   }
-
-
-
 }
 
 
