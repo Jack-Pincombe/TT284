@@ -55,7 +55,6 @@ function nonRequired(field)
   var data = document.getElementById(field).value;
   console.log("nonRequired called");
 
-
   if (data == "" && field == 'PB')
   {
     document.getElementById(field).value = 0;
@@ -71,11 +70,9 @@ function nonRequired(field)
   {
     return "";
   }
-
-
-
 }
 
+//Ensures field input is int
 function isInt(value)
 {
   var data = document.getElementById(value).value;
@@ -89,6 +86,7 @@ function isInt(value)
   }
 }
 
+//Ensures field is not empty
 function isNotEmptyValue(value,name)
 {
 
@@ -101,7 +99,7 @@ function isNotEmptyValue(value,name)
   return "";
 }
 
-
+//;
 function lengthCheck(value, min, max)
 {
 
@@ -114,8 +112,6 @@ function lengthCheck(value, min, max)
   }
   return "";
 }
-
-
 
 // main function to run on sumbit
 function validate()
@@ -130,9 +126,6 @@ function validate()
   nonRequired('AgeGrade');
   nonRequired('PB');
 
-
-
-
   if(result != "")
   {
     alert(result);
@@ -142,10 +135,6 @@ function validate()
      return true;
   }
 }
-
-
-
-
 </script>
 
 </body>
