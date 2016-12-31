@@ -50,28 +50,23 @@ Note: all fields marked '*' are mandatory.
 
 // assigns values to empty non required values
 
-function dateTime()
-{
-
-var date = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-var time =
-
-}
-
 function nonRequired(field)
 {
   var data = document.getElementById(field).value;
+  console.log("nonRequired called");
 
-  if (data == "")
+
+  if (data == "" && field == 'PB')
+  {
+    document.getElementById(field).value = 0;
+  }
+
+  else if (data == "")
   {
     document.getElementById(field).value = -1;
-
     console.log("Field has been assigned");
+  }
 
-  }
-  else if (data = "" && field = 'PB') {
-    document.getElementById('PB').value = 0;
-  }
   else
   {
     return "";
