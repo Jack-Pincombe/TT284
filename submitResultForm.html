@@ -30,13 +30,13 @@ Note: all fields marked '*' are mandatory.
 <td><input type="text" id="Finish" name="FinishTime" size="8" maxlength="8"/></td>
 </tr>
 <tr><td>Position</td>
-<td><input type="text" name="Position" size="5" maxlength="5"/></td>
+<td><input type="text" id='Position'ame="Position" size="5" maxlength="5"/></td>
 </tr>
 <tr><td>Category ID</td>
-<td><input type="text" name="CategoryID" size="3" maxlength="2"/></td>
+<td><input type="text" id="CategoryID"name="CategoryID" size="3" maxlength="2"/></td>
 </tr>
 <tr><td>Age grade</td>
-<td><input type="text" name="AgeGrade" size="5" maxlength="5"/></td>
+<td><input type="text" id="AgeGrade"name="AgeGrade" size="5" maxlength="5"/></td>
 </tr>
 <tr><td>Personal best</td>
 <td><input type="text" id="PB" name="PB" size="1" maxlength="2"/></td>
@@ -48,6 +48,51 @@ Note: all fields marked '*' are mandatory.
 
 <script type="text/javascript">
 
+// assigns values to empty non required values
+
+function dateTime()
+{
+
+var date = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+var time =
+
+}
+
+function nonRequired(field)
+{
+  var data = document.getElementById(field).value;
+
+  if (data == "")
+  {
+    document.getElementById(field).value = -1;
+
+    console.log("Field has been assigned");
+
+  }
+  else if (data = "" && field = 'PB') {
+    document.getElementById('PB').value = 0;
+  }
+  else
+  {
+    return "";
+  }
+
+
+
+}
+
+function isInt(value)
+{
+  var data = document.getElementById(value).value;
+
+  if( data%1===0)
+{
+    return "";
+}
+  else {
+    return value + " needs to be a valid number\n";
+  }
+}
 
 function isNotEmptyValue(value,name)
 {
@@ -57,9 +102,6 @@ function isNotEmptyValue(value,name)
   if (id == null || id == "")
   {
     return "ERROR " + name + " must be given\n";
-    console.log(id);
-
-
   }
   return "";
 }
@@ -68,30 +110,41 @@ function isNotEmptyValue(value,name)
 function lengthCheck(value, min, max)
 {
 
-  var x = document.getElementById('RunnerID').value;
+  var x = document.getElementById(value).value;
 
-  console.log("Length check test");
   if (parseInt(x) < min || parseInt(x) > max)
   {
     return "Please ensure that the number you input is between 1 and 9999 \n";
 
-    console.log(x);
   }
   return "";
 }
+
+
 
 // main function to run on sumbit
 function validate()
 {
 
   var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
-              + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') +
-              lengthCheck('RunnerID',1,9999) + lengthCheck('EventID',1,9999);
+  + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') + lengthCheck('RunnerID',1,9999)
+  + lengthCheck('EventID',1,9999)+ isInt('RunnerID') + isInt('EventID');
+
+  nonRequired('Position');
+  nonRequired('CategoryID');
+  nonRequired('AgeGrade');
+  nonRequired('PB');
+
+
+
 
   if(result != "")
   {
     alert(result);
     return false;
+  }
+  else {
+     return true;
   }
 }
 
