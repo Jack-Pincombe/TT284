@@ -121,10 +121,9 @@ function date()
   if(!/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(date))
 {
   console.log("failed date");
-  alert("please enter a valid date");
-  return false;
-
+  return "ERROR Please enter a valid date \n";
 }
+
   var parts = date.split("-");
   var month = parseInt(parts[1],10);
   var day = parseInt(parts[2],10);
@@ -132,22 +131,47 @@ function date()
 if (date != "") {
   if (month < 1 || month > 12 || day < 1 || day > 31)
   {
-      alert("Please enter a valid date");
-      return false;
+      return "ERROR Please enter a valid date \n";
+  }
+  else
+  {
+    return "";
   }
 }
-
 }
 
 function time()
 {
+  console.log("Time() called");
   var time = document.getElementById("FinishTime").value;
 
-  if(!/^\d{2}\:\d{2}\:\d{2}$/.test(time))
+  if(!/^\d{2}\:\d{1,2}\:\d{1,2}$/.test(time))
   {
-    alert("Please enter a valid time");
-    return false;
+    console.log("time failed1");
+    return "ERROR Please enter a valid time \n";
   }
+  else
+  {
+    var parts = time.split(":");
+    var seconds = parseInt(parts[2],10);
+    var minutes = parseInt(parts[1],10);
+    var x;
+
+    if (seconds > 60)
+    {
+      console.log("Time falied 2");
+      return "Please ensure that you have entered a correct time";
+    }
+    return ""
+  }
+
+  var parts = time.split(":");
+  var seconds = parseInt(parts[2],10);
+  var minutes = parseInt(parts[1],10);
+  var x;
+
+
+
 }
 
 
@@ -157,15 +181,14 @@ function validate()
 
   var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
   + isNotEmptyValue('Date','Date') + isNotEmptyValue('FinishTime','FinishTime') + lengthCheck('RunnerID',1,9999)
-  + lengthCheck('EventID',1,9999)+ isInt('RunnerID') + isInt('EventID');
+  + lengthCheck('EventID',1,9999)+ isInt('RunnerID') + isInt('EventID') + date() + time();
 
   nonRequired('Position');
   nonRequired('CategoryID');
   nonRequired('AgeGrade');
   nonRequired('PB');
 
-  return date();
-  return time();
+
 
   if(result != "")
   {
