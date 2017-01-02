@@ -27,7 +27,7 @@ Note: all fields marked '*' are mandatory.
 <td><input type="text" id="Date" name="Date" size="10" maxlength="10"/></td>
 </tr>
 <tr><td>Finish time (HH:MM:SS)*</td>
-<td><input type="text" id="Finish" name="FinishTime" size="8" maxlength="8"/></td>
+<td><input type="text" id="FinishTime" name="FinishTime" size="8" maxlength="8"/></td>
 </tr>
 <tr><td>Position</td>
 <td><input type="text" id='Position'ame="Position" size="5" maxlength="5"/></td>
@@ -58,6 +58,7 @@ function nonRequired(field)
   if (data == "" && field == 'PB')
   {
     document.getElementById(field).value = 0;
+    console.log("field has been assigned");
   }
 
   else if (data == "")
@@ -66,15 +67,13 @@ function nonRequired(field)
     console.log("Field has been assigned");
   }
 
-  else
-  {
-    return "";
-  }
+
 }
 
 //Ensures field input is int
 function isInt(value)
 {
+  console.log("IsInt called");
   var data = document.getElementById(value).value;
 
   if( data%1===0)
@@ -89,10 +88,11 @@ function isInt(value)
 //Ensures field is not empty
 function isNotEmptyValue(value,name)
 {
+  console.log("isNotEmptyValue called");
 
-   var id = document.getElementById(value).value;
+  var id = document.getElementById(value).value;
 
-  if (id == null || id == "")
+  if ( id == "")
   {
     return "ERROR " + name + " must be given\n";
   }
@@ -102,6 +102,7 @@ function isNotEmptyValue(value,name)
 
 function lengthCheck(value, min, max)
 {
+  console.log("lengthCheck called");
 
   var x = document.getElementById(value).value;
 
@@ -128,6 +129,7 @@ function date()
   var month = parseInt(parts[1],10);
   var day = parseInt(parts[2],10);
 
+if (date != "") {
   if (month < 1 || month > 12 || day < 1 || day > 31)
   {
       alert("Please enter a valid date");
@@ -135,25 +137,26 @@ function date()
   }
 }
 
+}
+
 function time()
 {
   var time = document.getElementById("FinishTime").value;
 
-  if(!/^\d{2}\-\d{1,2}\-\d{1,2}$/.test(time))
+  if(!/^\d{2}\:\d{2}\:\d{2}$/.test(time))
   {
-    console.log("Failed time");
-    alert("Please enter a valid finish time")
+    alert("Please enter a valid time");
     return false;
   }
-
-
 }
+
+
 // main function to run on sumbit
 function validate()
 {
 
   var result = isNotEmptyValue('RunnerID','RunnerID') + isNotEmptyValue('EventID','EventID')
-  + isNotEmptyValue('Date','Date') + isNotEmptyValue('Finish','Finish') + lengthCheck('RunnerID',1,9999)
+  + isNotEmptyValue('Date','Date') + isNotEmptyValue('FinishTime','FinishTime') + lengthCheck('RunnerID',1,9999)
   + lengthCheck('EventID',1,9999)+ isInt('RunnerID') + isInt('EventID');
 
   nonRequired('Position');
