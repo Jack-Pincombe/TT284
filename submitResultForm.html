@@ -99,7 +99,7 @@ function isNotEmptyValue(value,name)
   return "";
 }
 
-//;
+
 function lengthCheck(value, min, max)
 {
 
@@ -112,7 +112,42 @@ function lengthCheck(value, min, max)
   }
   return "";
 }
+//ensures that the date input is valid
+function date()
+{
+  var date = document.getElementById('Date').value;
 
+  if(!/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(date))
+{
+  console.log("failed date");
+  alert("please enter a valid date");
+  return false;
+
+}
+  var parts = date.split("-");
+  var month = parseInt(parts[1],10);
+  var day = parseInt(parts[2],10);
+
+  if (month < 1 || month > 12 || day < 1 || day > 31)
+  {
+      alert("Please enter a valid date");
+      return false;
+  }
+}
+
+function time()
+{
+  var time = document.getElementById("FinishTime").value;
+
+  if(!/^\d{2}\-\d{1,2}\-\d{1,2}$/.test(time))
+  {
+    console.log("Failed time");
+    alert("Please enter a valid finish time")
+    return false;
+  }
+
+
+}
 // main function to run on sumbit
 function validate()
 {
@@ -125,6 +160,9 @@ function validate()
   nonRequired('CategoryID');
   nonRequired('AgeGrade');
   nonRequired('PB');
+
+  return date();
+  return time();
 
   if(result != "")
   {
