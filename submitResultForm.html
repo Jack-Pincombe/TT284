@@ -66,8 +66,6 @@ function nonRequired(field)
     document.getElementById(field).value = -1;
     console.log("Field has been assigned");
   }
-
-
 }
 
 //Ensures field input is int
@@ -157,7 +155,7 @@ function time()
     var minutes = parseInt(parts[1],10);
     var x;
 
-    if (seconds > 60)
+    if (seconds > 60 || minutes > 60)
     {
       console.log("Time falied 2");
       return "Please ensure that you have entered a correct time";
@@ -170,10 +168,7 @@ function time()
   var minutes = parseInt(parts[1],10);
   var x;
 
-
-
 }
-
 
 // main function to run on sumbit
 function validate()
@@ -187,8 +182,6 @@ function validate()
   nonRequired('CategoryID');
   nonRequired('AgeGrade');
   nonRequired('PB');
-
-
 
   if(result != "")
   {
