@@ -30,8 +30,7 @@ $CategoryID = $_POST['CategoryID'];
 $AgeGrade = $_POST['AgeGrade'];
 $PB = $_POST['PB'];
 
-$group = array($RunnerId, $EventID, $Date,$FinishTime,$Position,$CategoryID,
-    $AgeGrade,$PB);
+
 
 
 
